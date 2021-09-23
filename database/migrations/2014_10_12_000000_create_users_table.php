@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number');
+            $table->string('handset_type_id');
             $table->timestamps();
         });
     }

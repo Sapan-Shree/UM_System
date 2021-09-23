@@ -19,8 +19,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::truncate();
         \App\Models\Handset::truncate();
 
+        $this->call(HandsetSeeder::class);
         \App\Models\User::factory(10)->create();
-        \App\Models\Handset::factory(10)->create();
+        
 
     }
 }

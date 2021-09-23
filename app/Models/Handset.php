@@ -9,14 +9,9 @@ class Handset extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-       'handset_type',
-       'user_id',
-    ];
 
-    public function user()
-    {
-       return $this->belongsTo(User::class);
+protected $table='handsets';
+   
 
-    }
+    
 }

@@ -15,7 +15,6 @@ class CreateHandsetsTable extends Migration
     {
         Schema::create('handsets', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
             $table->string('handset_type');
             $table->timestamps();
           
