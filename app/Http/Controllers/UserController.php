@@ -21,13 +21,15 @@ class UserController extends Controller
     public function create(Request $request)
     {
     
-        $validator = Validator::make($request->all(), [
+       $rules =array(
             'name' => 'required',
             'phone_number' => 'required|unique:users',
             'handset_type' => 'required' 
-        ]);
+        );
+        $validator=Validator::make($request->all(),$rules);
+        
         if ($validator->fails()) {
-            return response()->JSON($validator->errors()->first(), '');
+            return $validator->errors();
         }
 
 
@@ -39,7 +41,7 @@ class UserController extends Controller
 //echo $handset_type_id['id'];
         if(!($handset_type_id))
         {
-            return response()->json(['error' => 'please enter Mobile phone,Desk phone or Software phone' , 'code' => 400 ],400);
+            return response()->json(['error' => 'please enter values from Mobile phone,Desk phone or Software phone'],400);
    
              
         }
@@ -65,8 +67,13 @@ class UserController extends Controller
     public function delete($id)
     {
        $user=User::findorFail($id);
-       $user->delete();
-       return response()->JSON(['data'=>$user] , 200);
+       $record=$user->delete();
+       if($record){
+       return response()->JSON(['message'=> "user deleted successfully"] , 200);
+       }
+       else{
+        return response()->JSON(['error'=> "user does not exist"] , 400);
 
+       }
     }
 }
