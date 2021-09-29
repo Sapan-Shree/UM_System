@@ -26,7 +26,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'phone_number' => $this->faker->phoneNumber,
-            'handset_type_id' => Handset::all()->random()->id,
+            // 'handset_type_id' => Handset::all()->random()->id,
            
         ];
     }

@@ -20,7 +20,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\Handset::truncate();
 
         $this->call(HandsetSeeder::class);
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create()->each(function($user){
+             $handsets=\App\Models\Handset::all()->pluck('id');
+            $user->handsets()->attach($handsets);
+
+        });
         
 
     }
