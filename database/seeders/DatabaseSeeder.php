@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(HandsetSeeder::class);
         \App\Models\User::factory(10)->create()->each(function($user){
-             $handsets=\App\Models\Handset::all()->pluck('id');
+             $handsets=\App\Models\Handset::all()->random(mt_rand(1, 3))->pluck('id');
             $user->handsets()->attach($handsets);
 
         });
